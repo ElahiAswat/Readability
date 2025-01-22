@@ -43,6 +43,7 @@ def process_pdf(input_path, output_path, background_color):
     return pdf_bytes
 
 def main():
+    st.markdown('<link rel="icon" type="image/png" href="icon.png">', unsafe_allow_html=True)
     st.title("Readability")
     st.write("Make your PDFs more readable with custom background colors")
 
