@@ -75,8 +75,8 @@ def main():
     
     # Dropdown for color selection
     color_options = {
-        "1 - Medium Grey": "#BFBAB7",
         "2 - Classic Yellow": "#F7F1E4",
+        "1 - Medium Grey": "#BFBAB7",
         "3 - Soft Cream": "#FDFAF1",
         "4 - Warm Sand": "#F5E6D3",
         "5 - Cool Mint": "#F1F7ED",
@@ -128,6 +128,13 @@ def main():
             file_name=st.session_state.output_filename,
             mime="application/pdf"
         )
-
+        
+        # Add Preview button and iframe
+        if st.button("Preview PDF"):
+            # Create a base64 version of the PDF for display
+            import base64
+            base64_pdf = base64.b64encode(st.session_state.pdf_data).decode('utf-8')
+            pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
+            st.markdown(pdf_display, unsafe_allow_html=True)
 if __name__ == "__main__":
     main()
