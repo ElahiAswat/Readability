@@ -46,7 +46,7 @@ def main():
     st.markdown('<link rel="icon" type="image/png" href="icon.png">', unsafe_allow_html=True)
     st.title("Readability")
     st.write("Make your PDFs more readable with custom background colors")
-
+    st.set_page_config(page_icon="icon.png")
     # Initialize session state for color selection
     if 'selected_color' not in st.session_state:
         st.session_state.selected_color = "#F7F1E4"  # Default color
