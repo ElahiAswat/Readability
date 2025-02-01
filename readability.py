@@ -44,14 +44,21 @@ def process_pdf(input_path, output_path, background_color):
 
 def main():
     # Page config must be the first Streamlit command
-    st.set_page_config(page_icon="icon.png")
+    st.set_page_config(page_title="Readability", page_icon="icon.png")
     
-    # Then other Streamlit commands can follow
-    st.markdown('<link rel="icon" type="image/png" href="icon.png">', unsafe_allow_html=True)
+    # Include the favicon in the HTML head
+    st.markdown(
+        """
+        <head>
+        <link rel="icon" type="image/png" href="icon.png">
+        </head>
+        """,
+        unsafe_allow_html=True
+    )
+    
     st.title("Readability")
     st.write("Make your PDFs more readable with custom background colors")
 
-    # Rest of your code remains the same...
     # Initialize session state for color selection
     if 'selected_color' not in st.session_state:
         st.session_state.selected_color = "#F7F1E4"  # Default color
@@ -141,5 +148,6 @@ def main():
             base64_pdf = base64.b64encode(st.session_state.pdf_data).decode('utf-8')
             pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800px" type="application/pdf"></iframe>'
             st.markdown(pdf_display, unsafe_allow_html=True)
+
 if __name__ == "__main__":
     main()
